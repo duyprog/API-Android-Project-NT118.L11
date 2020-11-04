@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const foodModel = require('../models/Food');
+const staffModel = require('../models/Staff')
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -28,4 +29,15 @@ router.post('/insert', async(req, res) =>{
     res.status(500).send(err);
   }
 });
+
+router.post('/insert_a_staff', async(req, res) =>{
+  const staff = new staffModel(req.body);
+  try{
+    await staff.save();
+    res.send(staff);
+  }
+  catch(error){
+    res.status(500).send(error);
+  }
+})
 module.exports = router;
