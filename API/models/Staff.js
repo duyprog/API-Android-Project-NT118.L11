@@ -1,18 +1,12 @@
-const mongoose = require('mongoose');
-const StaffSchema = new mongoose.Schema({
-  identify:{
-      type: Number,
-      required: true,
-      unique: true
-  },
-  staffName:{
-      type: String,
-      required: true,
-  },
-  position:{
-      type: String, 
-  }
-});
+var db = require('../dbconnection/dbconnection');
 
-const Staff = mongoose.model("Staff", StaffSchema);
-module.exports = Staff;
+var staff={
+    getAllStaff: (callback) =>{
+        return db.query("SELECT * FROM STAFF", callback);
+    },
+    addAnStaff: (STAFF, callback) =>{
+        return db.query("INSERT INTO STAFF(STAFFID, STAFFNAME, DOB, PHONE, username, passwd, position) VALUES(?,?,?,?,?,?,?)",
+         [STAFF.STAFFID, STAFF.STAFFNAME, STAFF.DOB, STAFF.PHONE, STAFF.username, STAFF.passwd, STAFF.position], callback);
+    }
+}
+module.exports = staff;

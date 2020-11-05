@@ -7,16 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var app = express();
-var mongoose = require('mongoose');
-const uri = "mongodb+srv://duypk:duypk@cluster0.xqt7k.mongodb.net/<dbname>?retryWrites=true&w=majority"
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}).then(() =>{
-  console.log("mongod connected");
-}).catch(() =>{
-  console.log("connect failed");
-});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
