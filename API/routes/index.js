@@ -12,12 +12,12 @@ router.get('/get_all_staff', (req, res, next) =>{
       res.send(err); // neu co loi response se tra ve loi
     }
     else{
-      res.send(JSON.stringify(rows)); // tra ve ket qua truy van duoi dang json 
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
     }
   });
 });
 router.post('/insert_new_staff', (req, res, next) =>{
-  staff.addAnStaff(req.body, (err, count) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
+  staff.addAStaff(req.body, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
     if(err){
       res.json(err); // tra ve loi 
     }
@@ -26,4 +26,15 @@ router.post('/insert_new_staff', (req, res, next) =>{
     }
   })
 })
+router.delete('/delete_a_staff/:STAFFID', (req, res, next) =>{
+  req.body = req.params.STAFFID;
+  staff.deleteAStaff(req.body, (err) =>{
+    if(err){
+      res.json(err);
+    }
+    else{
+      res.json(req.body);
+    }
+  })
+}); 
 module.exports = router;
