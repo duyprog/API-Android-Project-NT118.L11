@@ -8,5 +8,8 @@ var staff={
         return db.query("INSERT INTO STAFF(STAFFID, STAFFNAME, DOB, PHONE, username, passwd, position) VALUES(?,?,?,?,?,?,?)",
          [STAFF.STAFFID, STAFF.STAFFNAME, STAFF.DOB, STAFF.PHONE, STAFF.username, STAFF.passwd, STAFF.position], callback); // truy van insert
     },
+    deleteAStaff: (STAFFID, callback) =>{
+        return db.query("DELETE FROM STAFF WHERE STAFFID=?", [STAFFID], callback);
+    }
 }
 module.exports = staff;
