@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var staff = require('../models/staff');
+var staff = require('../models/Staff');
+var table = require('../models/Table');
+var receipt = require('../models/Receipts');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -37,4 +39,62 @@ router.delete('/delete_a_staff/:STAFFID', (req, res, next) =>{
     }
   })
 }); 
+// TABLE
+router.get('/get_all_table', (req, res, next) =>{
+  table.getAllTable((err, rows) =>{ // goi ham get all staff
+    if(err){
+      res.send(err); // neu co loi response se tra ve loi
+    }
+    else{
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
+    }
+  });
+});
+
+// RECEIPT
+router.get('/get_all_receipt', (req, res, next) =>{
+  receipt.getAllReceipt((err, rows) =>{
+    if(err) {
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
+
+router.post('/insert_new_receipt', (req, res, next) =>{
+  receipt.addAReceipt(req.body, (err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(req.body);
+    }
+  });
+});
+
+router.delete('/delete_a_receipt/:RECEIPT_ID', (req, res, next) =>{
+  req.body = req.params.RECEIPT_ID;
+  receipt.deleteAReceipt(req.body, (err) =>{
+    if(err){
+      res.json(err);
+    }
+    else{
+      res.json(req.body);
+    }
+  })
+});
+
+router.get('/get_receipt_by_id/:RECEIPT_ID', (req, res, next) =>{
+  console.log(req.params);
+  receipt.getReceiptById(req.params.RECEIPT_ID, (rows, err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
 module.exports = router;
