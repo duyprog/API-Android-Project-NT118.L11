@@ -51,6 +51,72 @@ router.get('/get_all_table', (req, res, next) =>{
   });
 });
 
+// ITEM
+router.get('/get_all_food_item', (req, res, next) =>{
+  table.getAllFoodItem((err, rows) =>{ // goi ham get all food
+    if(err){
+      res.send(err); // neu co loi response se tra ve loi
+    }
+    else{
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
+    }
+  });
+});
+
+router.get('/get_all_drink_item', (req, res, next) =>{
+  table.getAllDrinkItem((err, rows) =>{ // goi ham get all drink
+    if(err){
+      res.send(err); // neu co loi response se tra ve loi
+    }
+    else{
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
+    }
+  });
+});
+router.get('/get_all_dessert_item', (req, res, next) =>{
+  table.getAllDessertItem((err, rows) =>{ // goi ham get all dessert
+    if(err){
+      res.send(err); // neu co loi response se tra ve loi
+    }
+    else{
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
+    }
+  });
+});
+
+router.get('/get_all_hotpot_item', (req, res, next) =>{
+  table.getAllHotpotItem((err, rows) =>{ // goi ham get all hotpot
+    if(err){
+      res.send(err); // neu co loi response se tra ve loi
+    }
+    else{
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
+    }
+  });
+});
+router.get('/get_all_fried_item', (req, res, next) =>{
+  table.getAllFriedItem((err, rows) =>{ // goi ham get all fried
+    if(err){
+      res.send(err); // neu co loi response se tra ve loi
+    }
+    else{
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
+    }
+  });
+});
+
+router.get('/get_all_noodles_item', (req, res, next) =>{
+  table.getAllNoodlesItem((err, rows) =>{ // goi ham get all noodles
+    if(err){
+      res.send(err); // neu co loi response se tra ve loi
+    }
+    else{
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
+    }
+  });
+});
+
+
 // RECEIPT
 router.get('/get_all_receipt', (req, res, next) =>{
   receipt.getAllReceipt((err, rows) =>{
