@@ -2,22 +2,22 @@ var db = require('../dbconnection/dbconnection');
 
 var items={
     getAllFoodItem: (callback) =>{
-        return db.query("SELECT * FROM ITEMS WHERE TYPE=FASTFOOD", callback); 
+        return db.query("SELECT * FROM ITEMS WHERE TYPE='FOOD'", callback); 
     },
     getAllDrinkItem: (callback) =>{
-        return db.query("SELECT * FROM ITEMS WHERE TYPE=DRINK", callback); 
+        return db.query("SELECT * FROM ITEMS WHERE TYPE='DRINK'", callback); 
     },
     getAllDessertItem: (callback) =>{
-        return db.query("SELECT * FROM ITEMS WHERE TYPE=DESSERT", callback); 
+        return db.query("SELECT * FROM ITEMS WHERE TYPE='DESSERT'", callback); 
     },
     getAllHotpotItem: (callback) =>{
-        return db.query("SELECT * FROM ITEMS WHERE TYPE=HOTPOT", callback);
+        return db.query("SELECT * FROM ITEMS WHERE TYPE='HOTPOT'", callback);
     },
     getAllFriedItem: (callback) =>{
-        return db.query("SELECT * FROM ITEMS WHERE TYPE=FRIED", callback);
+        return db.query("SELECT * FROM ITEMS WHERE TYPE='FRIED'", callback);
     },
     getAllNoodlesItem: (callback) =>{
-        return db.query("SELECT * FROM ITEMS WHERE TYPE=NOODLES", callback);
+        return db.query("SELECT * FROM ITEMS WHERE TYPE='NOODLES'", callback);
     }
     // addAItem: (Item, callback) =>{
     //     return db.query("INSERT INTO ITEMS(Item_ID, Item_NAME, UNITPRICE, TYPE) VALUES(?,?,?,?)",

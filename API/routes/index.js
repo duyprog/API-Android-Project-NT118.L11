@@ -3,6 +3,8 @@ var router = express.Router();
 var staff = require('../models/Staff');
 var table = require('../models/Table');
 var receipt = require('../models/Receipts');
+var items = require('../models/Item');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -53,7 +55,7 @@ router.get('/get_all_table', (req, res, next) =>{
 
 // ITEM
 router.get('/get_all_food_item', (req, res, next) =>{
-  table.getAllFoodItem((err, rows) =>{ // goi ham get all food
+  items.getAllFoodItem((err, rows) =>{ // goi ham get all food
     if(err){
       res.send(err); // neu co loi response se tra ve loi
     }
@@ -64,7 +66,7 @@ router.get('/get_all_food_item', (req, res, next) =>{
 });
 
 router.get('/get_all_drink_item', (req, res, next) =>{
-  table.getAllDrinkItem((err, rows) =>{ // goi ham get all drink
+  items.getAllDrinkItem((err, rows) =>{ // goi ham get all drink
     if(err){
       res.send(err); // neu co loi response se tra ve loi
     }
@@ -74,7 +76,7 @@ router.get('/get_all_drink_item', (req, res, next) =>{
   });
 });
 router.get('/get_all_dessert_item', (req, res, next) =>{
-  table.getAllDessertItem((err, rows) =>{ // goi ham get all dessert
+  items.getAllDessertItem((err, rows) =>{ // goi ham get all dessert
     if(err){
       res.send(err); // neu co loi response se tra ve loi
     }
@@ -85,7 +87,7 @@ router.get('/get_all_dessert_item', (req, res, next) =>{
 });
 
 router.get('/get_all_hotpot_item', (req, res, next) =>{
-  table.getAllHotpotItem((err, rows) =>{ // goi ham get all hotpot
+  items.getAllHotpotItem((err, rows) =>{ // goi ham get all hotpot
     if(err){
       res.send(err); // neu co loi response se tra ve loi
     }
@@ -95,7 +97,7 @@ router.get('/get_all_hotpot_item', (req, res, next) =>{
   });
 });
 router.get('/get_all_fried_item', (req, res, next) =>{
-  table.getAllFriedItem((err, rows) =>{ // goi ham get all fried
+  items.getAllFriedItem((err, rows) =>{ // goi ham get all fried
     if(err){
       res.send(err); // neu co loi response se tra ve loi
     }
@@ -106,7 +108,7 @@ router.get('/get_all_fried_item', (req, res, next) =>{
 });
 
 router.get('/get_all_noodles_item', (req, res, next) =>{
-  table.getAllNoodlesItem((err, rows) =>{ // goi ham get all noodles
+  items.getAllNoodlesItem((err, rows) =>{ // goi ham get all noodles
     if(err){
       res.send(err); // neu co loi response se tra ve loi
     }
