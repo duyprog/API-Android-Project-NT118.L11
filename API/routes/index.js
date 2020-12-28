@@ -3,6 +3,8 @@ var router = express.Router();
 var staff = require('../models/Staff');
 var table = require('../models/Table');
 var receipt = require('../models/Receipts');
+var items = require('../models/Item');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -50,6 +52,72 @@ router.get('/get_all_table', (req, res, next) =>{
     }
   });
 });
+
+// ITEM
+router.get('/get_all_food_item', (req, res, next) =>{
+  items.getAllFoodItem((err, rows) =>{ // goi ham get all food
+    if(err){
+      res.send(err); // neu co loi response se tra ve loi
+    }
+    else{
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
+    }
+  });
+});
+
+router.get('/get_all_drink_item', (req, res, next) =>{
+  items.getAllDrinkItem((err, rows) =>{ // goi ham get all drink
+    if(err){
+      res.send(err); // neu co loi response se tra ve loi
+    }
+    else{
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
+    }
+  });
+});
+router.get('/get_all_dessert_item', (req, res, next) =>{
+  items.getAllDessertItem((err, rows) =>{ // goi ham get all dessert
+    if(err){
+      res.send(err); // neu co loi response se tra ve loi
+    }
+    else{
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
+    }
+  });
+});
+
+router.get('/get_all_hotpot_item', (req, res, next) =>{
+  items.getAllHotpotItem((err, rows) =>{ // goi ham get all hotpot
+    if(err){
+      res.send(err); // neu co loi response se tra ve loi
+    }
+    else{
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
+    }
+  });
+});
+router.get('/get_all_fried_item', (req, res, next) =>{
+  items.getAllFriedItem((err, rows) =>{ // goi ham get all fried
+    if(err){
+      res.send(err); // neu co loi response se tra ve loi
+    }
+    else{
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
+    }
+  });
+});
+
+router.get('/get_all_noodles_item', (req, res, next) =>{
+  items.getAllNoodlesItem((err, rows) =>{ // goi ham get all noodles
+    if(err){
+      res.send(err); // neu co loi response se tra ve loi
+    }
+    else{
+      res.send(rows); // tra ve ket qua truy van duoi dang json 
+    }
+  });
+});
+
 
 // RECEIPT
 router.get('/get_all_receipt', (req, res, next) =>{

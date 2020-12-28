@@ -9,7 +9,7 @@ var staff={
          [STAFF.STAFFID, STAFF.STAFFNAME, STAFF.DOB, STAFF.PHONE, STAFF.username, STAFF.passwd, STAFF.position], callback); // truy van insert
     },
     deleteAStaff: (STAFFID, callback) =>{
-        return db.query("DELETE FROM STAFF WHERE STAFFID=?", [STAFFID], callback);
+        return db.query("DELETE FROM STAFFS WHERE STAFFID=?", [STAFFID], callback);
     }
 }
 module.exports = staff;
