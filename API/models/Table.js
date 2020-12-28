@@ -2,7 +2,7 @@ var db = require('../dbconnection/dbconnection');
 
 var table={
     getAllTable: (callback) =>{
-        return db.query("SELECT * FROM TB", callback);  STAFF
+        return db.query("SELECT * FROM TB ORDER BY TB_ID", callback);  
     },
     addATable: (Table, callback) =>{
         return db.query("INSERT INTO TB(TB_ID, NUM_OF_SEATS, TB_STATUS) VALUES(?,?,?)",
