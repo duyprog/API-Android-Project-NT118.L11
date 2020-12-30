@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var staff = require('../models/Staff');
 var table = require('../models/Table');
-var receipt = require('../models/Receipts');
+var receipt = require('../models/Receipt');
 var items = require('../models/Item');
 
 /* GET home page. */
@@ -122,6 +122,28 @@ router.get('/get_all_noodles_item', (req, res, next) =>{
 // RECEIPT
 router.get('/get_all_receipt', (req, res, next) =>{
   receipt.getAllReceipt((err, rows) =>{
+    if(err) {
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
+
+router.get('/get_all_complete_receipt', (req, res, next) =>{
+  receipt.getAllCompleteReceipt((err, rows) =>{
+    if(err) {
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
+
+router.get('/get_all_incomplete_receipt', (req, res, next) =>{
+  receipt.getAllInCompleteReceipt((err, rows) =>{
     if(err) {
       res.send(err);
     }
