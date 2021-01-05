@@ -224,12 +224,12 @@ router.get('/get_customer_by_id/:customer_ID', (req, res, next) =>{
   });
 });
 router.post('/insert_new_customer', (req, res, next) =>{
-  Customer.addANewCustomer(req.body, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
+  Customer.addANewCustomer(req.params.body, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
     if(err){
       res.json(err); // tra ve loi 
     }
     else{
-      res.json(req.body); // neu them thanh cong thi tra ve ket qua la phan body cua request 
+      res.json(req.params.body); // neu them thanh cong thi tra ve ket qua la phan body cua request 
     }
   })
 })
