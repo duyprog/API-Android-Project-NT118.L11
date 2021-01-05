@@ -154,16 +154,6 @@ router.get('/get_all_incomplete_receipt', (req, res, next) =>{
   });
 });
 
-router.post('/insert_new_receipt', (req, res, next) =>{
-  receipt.addAReceipt(req.body, (err) =>{
-    if(err){
-      res.send(err);
-    }
-    else{
-      res.send(req.body);
-    }
-  });
-});
 
 router.delete('/delete_a_receipt/:RECEIPT_ID', (req, res, next) =>{
   req.body = req.params.RECEIPT_ID;
@@ -199,6 +189,7 @@ router.get('/get_receiptdetail_by_id/:RECEIPT_ID', (req, res, next) =>{
     }
   });
 });
+<<<<<<< HEAD
 
 // Customer
 router.get('/get_all_customer', (req, res, next) =>{
@@ -225,6 +216,10 @@ router.get('/get_customer_by_id/:customer_ID', (req, res, next) =>{
 });
 router.post('/insert_new_customer', (req, res, next) =>{
   Customer.addANewCustomer(req.params.body, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
+=======
+router.post('/insert_new_receipt/:STAFFID/:CUSTOMER_ID/:TBID/:TYPE', (req, res, next) =>{
+  receipt.insertNewReceipt(req.params.STAFFID, req.params.CUSTOMER_ID, req.params.TBID, req.params.TYPE, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
+>>>>>>> 40f2decadcc8fddeddc1a474c9141ddb97577923
     if(err){
       res.json(err); // tra ve loi 
     }
@@ -233,17 +228,4 @@ router.post('/insert_new_customer', (req, res, next) =>{
     }
   })
 })
-router.delete('/delete_a_customer/:customer_ID', (req, res, next) =>{
-  req.body = req.params.customer_ID;
-  Customer.deleteACustomer(req.body, (err) =>{
-    if(err){
-      res.json(err);
-    }
-    else{
-      res.json(req.body);
-    }
-  })
-}); 
-
-
 module.exports = router;
