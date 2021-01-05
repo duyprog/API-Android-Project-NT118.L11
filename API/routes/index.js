@@ -201,6 +201,17 @@ router.get('/get_receiptdetail_by_id/:RECEIPT_ID', (req, res, next) =>{
 });
 
 // Customer
+router.get('/get_all_customer', (req, res, next) =>{
+  console.log(req.params);
+  Customer.getAllCustomer((rows, err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
 router.get('/get_customer_by_id/:customer_ID', (req, res, next) =>{
   console.log(req.params);
   Customer.getCustomerById(req.params.customer_ID, (rows, err) =>{
@@ -212,6 +223,27 @@ router.get('/get_customer_by_id/:customer_ID', (req, res, next) =>{
     }
   });
 });
+router.post('/insert_new_customer', (req, res, next) =>{
+  Customer.addANewCustomer(req.body, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
+    if(err){
+      res.json(err); // tra ve loi 
+    }
+    else{
+      res.json(req.body); // neu them thanh cong thi tra ve ket qua la phan body cua request 
+    }
+  })
+})
+router.delete('/delete_a_customer/:customer_ID', (req, res, next) =>{
+  req.body = req.params.customer_ID;
+  Customer.deleteACustomer(req.body, (err) =>{
+    if(err){
+      res.json(err);
+    }
+    else{
+      res.json(req.body);
+    }
+  })
+}); 
 
 
 module.exports = router;
