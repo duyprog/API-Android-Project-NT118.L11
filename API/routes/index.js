@@ -4,7 +4,7 @@ var staff = require('../models/Staff');
 var table = require('../models/Table');
 var receipt = require('../models/Receipt');
 var items = require('../models/Item');
-
+var receiptDetails = require('../models/ReceiptDetail');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -179,6 +179,17 @@ router.delete('/delete_a_receipt/:RECEIPT_ID', (req, res, next) =>{
 router.get('/get_receipt_by_id/:RECEIPT_ID', (req, res, next) =>{
   console.log(req.params);
   receipt.getReceiptById(req.params.RECEIPT_ID, (rows, err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
+router.get('/get_receiptdetail_by_id/:RECEIPT_ID', (req, res, next) =>{
+  console.log(req.params);
+  receiptDetails.getReceiptDetailById(req.params.RECEIPT_ID, (rows, err) =>{
     if(err){
       res.send(err);
     }
