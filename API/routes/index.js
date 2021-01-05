@@ -5,6 +5,7 @@ var table = require('../models/Table');
 var receipt = require('../models/Receipt');
 var items = require('../models/Item');
 var receiptDetails = require('../models/ReceiptDetail');
+var Customer = require('../models/Customer');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -198,4 +199,19 @@ router.get('/get_receiptdetail_by_id/:RECEIPT_ID', (req, res, next) =>{
     }
   });
 });
+
+// Customer
+router.get('/get_customer_by_id/:customer_ID', (req, res, next) =>{
+  console.log(req.params);
+  Customer.getCustomerById(req.params.customer_ID, (rows, err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
+
+
 module.exports = router;

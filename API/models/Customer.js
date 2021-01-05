@@ -4,6 +4,9 @@ var customer={
     getAllCustomer: (callback) =>{
         return db.query("SELECT * FROM CUSTOMER", callback); // get all staff from CUSTOMER STAFF
     },
+    getCustomerById: (CUSTOMER_ID, callback) => {
+        return db.query("SELECT * FROM customer WHERE CUSTOMER_ID = ?", [CUSTOMER_ID], callback);
+    },
     addACustomer: (CUSTOMER, callback) =>{
         return db.query("INSERT INTO CUSTOMER(CUSTOMER_ID, CUSTOMER_NAME, PHONE) VALUES(?,?,?)",
          [CUSTOMER.CUSTOMER_ID, CUSTOMER.NUM_OF_SEAT, CUSTOMER.TB_STATUS], callback); // truy van insert
