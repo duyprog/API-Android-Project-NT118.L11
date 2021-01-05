@@ -5,6 +5,7 @@ var table = require('../models/Table');
 var receipt = require('../models/Receipt');
 var items = require('../models/Item');
 var receiptDetails = require('../models/ReceiptDetail');
+var Customer = require('../models/Customer');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
