@@ -153,16 +153,6 @@ router.get('/get_all_incomplete_receipt', (req, res, next) =>{
   });
 });
 
-router.post('/insert_new_receipt', (req, res, next) =>{
-  receipt.addAReceipt(req.body, (err) =>{
-    if(err){
-      res.send(err);
-    }
-    else{
-      res.send(req.body);
-    }
-  });
-});
 
 router.delete('/delete_a_receipt/:RECEIPT_ID', (req, res, next) =>{
   req.body = req.params.RECEIPT_ID;
@@ -198,4 +188,14 @@ router.get('/get_receiptdetail_by_id/:RECEIPT_ID', (req, res, next) =>{
     }
   });
 });
+router.post('/insert_new_receipt/:STAFFID/:CUSTOMER_ID/:TBID/:TYPE', (req, res, next) =>{
+  receipt.insertNewReceipt(req.params.STAFFID, req.params.CUSTOMER_ID, req.params.TBID, req.params.TYPE, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
+    if(err){
+      res.json(err); // tra ve loi 
+    }
+    else{
+      res.json(req.body); // neu them thanh cong thi tra ve ket qua la phan body cua request 
+    }
+  })
+})
 module.exports = router;
