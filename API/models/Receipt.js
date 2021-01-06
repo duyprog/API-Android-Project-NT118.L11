@@ -18,6 +18,9 @@ var receipt = {
     }, 
     insertNewReceipt: (STAFFID, CUSTOMER_ID, TBID, TYPE, callback) => {
         return db.query("INSERT INTO RECEIPT(STAFFID, CUSTOMER_ID, TBID, TYPE) VALUES (?,?,?,1)", [STAFFID, CUSTOMER_ID, TBID, TYPE], callback);
+    }, 
+    getIdOfCurrentReceipt: (callback) =>{
+        return db.query('SELECT RECEIPT_ID FROM RECEIPT ORDER BY RECEIPT_ID DESC LIMIT 1', callback);
     }
 }
 

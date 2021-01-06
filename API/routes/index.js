@@ -200,3 +200,14 @@ router.post('/insert_new_receipt/:STAFFID/:CUSTOMER_ID/:TBID/:TYPE', (req, res, 
   })
 })
 module.exports = router;
+
+router.get('/get_id_current_receipt', (req, res, next) =>{
+  receipt.getIdOfCurrentReceipt((err, rows) =>{
+    if(err) {
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
