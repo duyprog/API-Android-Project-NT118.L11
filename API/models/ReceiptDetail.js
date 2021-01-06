@@ -4,6 +4,9 @@ var receiptDetails = {
     getReceiptDetailById: ( RECEIPT_ID,callback) => {
         return db.query(`SELECT * FROM RECEIPTDETAILS JOIN ITEMS ON RECEIPTDETAILS.ITEM_ID = ITEMS.ITEM_ID JOIN RECEIPT ON RECEIPT.RECEIPT_ID = RECEIPTDETAILS.RECEIPT_ID JOIN TB ON TB.TB_ID = RECEIPT.TBID  WHERE RECEIPTDETAILS.RECEIPT_ID = ?`, [RECEIPT_ID], callback);
     }, 
+    insertNewReceiptDetail: (RECEIPT_ID, ITEM_ID, QUANTITY, callback) => {
+        return db.query("INSERT INTO RECEIPTDETAILS(RECEIPT_ID, ITEM_ID, QUANTITY) VALUES (?,?,?)", [RECEIPT_ID, ITEM_ID, QUANTITY], callback);
+    } 
 }
 
 

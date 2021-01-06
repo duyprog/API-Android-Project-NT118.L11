@@ -225,8 +225,8 @@ router.get('/get_customer_by_id/:customer_ID', (req, res, next) =>{
   });
 });
 
-router.post('/insert_new_customer/:CUSTOMER_ID/:CUSTOMER_NAME/:PHONE', (req, res, next) =>{
-  Customer.addANewCustomer(req.params.CUSTOMER_ID, req.params.CUSTOMER_NAME, req.params.PHONE, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
+router.post('/insert_new_customer/:CUSTOMER_NAME/:PHONE', (req, res, next) =>{
+  Customer.addANewCustomer(req.params.CUSTOMER_NAME, req.params.PHONE, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
     if(err){
       res.send(err); // tra ve loi 
     }
@@ -235,7 +235,6 @@ router.post('/insert_new_customer/:CUSTOMER_ID/:CUSTOMER_NAME/:PHONE', (req, res
     }
   })
 })
-module.exports = router;
 
 router.get('/get_id_current_receipt', (req, res, next) =>{
   receipt.getIdOfCurrentReceipt((err, rows) =>{
@@ -247,3 +246,16 @@ router.get('/get_id_current_receipt', (req, res, next) =>{
     }
   });
 });
+
+router.post('/insert_new_receipt_detail/:RECEIPT_ID/:ITEM_ID/:QUANTITY', (req,res, next) =>{
+  receiptDetails.insertNewReceiptDetail(req.params.RECEIPT_ID, req.params.ITEM_ID, req.params.QUANTITY, (err) =>{
+    if(err){
+      res.send(err); // tra ve loi 
+    }
+    else{
+      res.send(req.params); // neu them thanh cong thi tra ve ket qua la phan body cua request 
+    }
+  });
+});
+
+module.exports = router;
