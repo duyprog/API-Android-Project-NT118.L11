@@ -195,7 +195,43 @@ router.post('/insert_new_receipt/:STAFFID/:CUSTOMER_ID/:TBID/:TYPE', (req, res, 
       res.json(err); // tra ve loi 
     }
     else{
-      res.json(req.body); // neu them thanh cong thi tra ve ket qua la phan body cua request 
+      res.json(req.params.body); // neu them thanh cong thi tra ve ket qua la phan body cua request 
+    }
+  })
+})
+
+
+// Customer
+router.get('/get_all_customer', (req, res, next) =>{
+  console.log(req.params);
+  Customer.getAllCustomer((rows, err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
+router.get('/get_customer_by_id/:customer_ID', (req, res, next) =>{
+  console.log(req.params);
+  Customer.getCustomerById(req.params.customer_ID, (rows, err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
+
+router.post('/insert_new_customer/:CUSTOMER_ID/:CUSTOMER_NAME/:PHONE', (req, res, next) =>{
+  Customer.addANewCustomer(req.params.CUSTOMER_ID, req.params.CUSTOMER_NAME, req.params.PHONE, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
+    if(err){
+      res.send(err); // tra ve loi 
+    }
+    else{
+      res.send(req.params.body); // neu them thanh cong thi tra ve ket qua la phan body cua request 
     }
   })
 })
