@@ -18,6 +18,9 @@ var receipt = {
     }, 
     insertNewReceipt: (STAFFID, CUSTOMER_ID, TBID, TYPE, callback) => {
         return db.query("INSERT INTO RECEIPT(STAFFID, CUSTOMER_ID, TBID, TYPE) VALUES (?,?,?,1)", [STAFFID, CUSTOMER_ID, TBID, TYPE], callback);
+    },
+    updateReceiptTotalPrice: (callback) => {
+        return db.query(`UPDATE receipt JOIN receiptdetails on receiptdetails.RECEIPT_ID = receipt.RECEIPT_ID SET TOTALPRICE = (SELECT SUM(receiptdetails.price) FROM receiptdetails WHERE receipt.RECEIPT_ID = receiptdetails.RECEIPT_ID) WHERE receipt.RECEIPT_ID = receiptdetails.RECEIPT_ID`, callback)
     }
 }
 
