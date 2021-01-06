@@ -200,6 +200,30 @@ router.post('/insert_new_receipt/:STAFFID/:CUSTOMER_ID/:TBID/:TYPE', (req, res, 
   })
 })
 
+router.put('/update_receipt_total_price', (req, res, next) =>{
+  console.log();
+  receipt.updateReceiptTotalPrice((rows, err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
+
+router.put('/update_receiptdetail_price', (req, res, next) =>{
+  console.log();
+  receiptDetails.updatePrice((rows, err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
+
 
 // Customer
 router.get('/get_all_customer', (req, res, next) =>{
