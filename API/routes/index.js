@@ -281,5 +281,16 @@ router.post('/insert_new_receipt_detail/:RECEIPT_ID/:ITEM_ID/:QUANTITY', (req,re
     }
   });
 });
+router.get('/get_totalprice_by_id/:RECEIPT_ID', (req, res, next) =>{
+  console.log(req.params);
+  receipt.getTotalPriceById(req.params.RECEIPT_ID, (rows, err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
 
 module.exports = router;
