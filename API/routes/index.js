@@ -54,6 +54,28 @@ router.get('/get_all_table', (req, res, next) =>{
   });
 });
 
+router.put('/update_serving_done/:TB_ID', (req, res, next) =>{
+  console.log(req.params);
+  table.updateServingDone(req.params.TB_ID, (rows, err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(req.params);
+    }
+  });
+});
+router.put('/update_serving_table/:TB_ID', (req, res, next) =>{
+  console.log(req.params);
+  table.updateServingTable(req.params.TB_ID, (rows, err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(req.params);
+    }
+  });
+});
 // ITEM
 router.get('/get_all_food_item', (req, res, next) =>{
   items.getAllFoodItem((err, rows) =>{ // goi ham get all food
@@ -195,7 +217,7 @@ router.post('/insert_new_receipt/:STAFFID/:CUSTOMER_ID/:TBID/:TYPE', (req, res, 
       res.json(err); // tra ve loi 
     }
     else{
-      res.json(req.params.body); // neu them thanh cong thi tra ve ket qua la phan body cua request 
+      res.json(req.params); // neu them thanh cong thi tra ve ket qua la phan body cua request 
     }
   })
 })
@@ -208,6 +230,18 @@ router.put('/update_receipt_total_price', (req, res, next) =>{
     }
     else{
       res.send(rows);
+    }
+  });
+});
+
+router.put('/update_receipt_done/:RECEIPT_ID', (req, res, next) =>{
+  console.log(req.params);
+  receipt.updateReceiptDone(req.params.RECEIPT_ID, (rows, err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(req.params);
     }
   });
 });
@@ -255,7 +289,7 @@ router.post('/insert_new_customer/:CUSTOMER_NAME/:PHONE', (req, res, next) =>{
       res.send(err); // tra ve loi 
     }
     else{
-      res.send(req.params.body); // neu them thanh cong thi tra ve ket qua la phan body cua request 
+      res.send(req.params); // neu them thanh cong thi tra ve ket qua la phan body cua request 
     }
   })
 })

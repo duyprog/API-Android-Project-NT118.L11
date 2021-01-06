@@ -24,10 +24,17 @@ var receipt = {
     },
     updateReceiptTotalPrice: (callback) => {
         return db.query(`UPDATE receipt JOIN receiptdetails on receiptdetails.RECEIPT_ID = receipt.RECEIPT_ID SET TOTALPRICE = (SELECT SUM(receiptdetails.price) FROM receiptdetails WHERE receipt.RECEIPT_ID = receiptdetails.RECEIPT_ID) WHERE receipt.RECEIPT_ID = receiptdetails.RECEIPT_ID`, callback)
+<<<<<<< HEAD
     }, 
     getTotalPriceById: (RECEIPT_ID, callback) => {
         return db.query("SELECT TOTALPRICE FROM receipt WHERE RECEIPT_ID = ?" , [RECEIPT_ID],  callback);
     }, 
+=======
+    },
+    updateReceiptDone: (RECEIPT_ID, callback) => {
+        return db.query(`UPDATE RECEIPT SET TYPE=0 WHERE RECEIPT_ID=?`, [RECEIPT_ID], callback);
+    }
+>>>>>>> d137a6bf398452ecc3da64687054b4941daab9b4
 }
 
 module.exports = receipt;
