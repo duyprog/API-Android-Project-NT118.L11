@@ -189,7 +189,17 @@ router.get('/get_receiptdetail_by_id/:RECEIPT_ID', (req, res, next) =>{
     }
   });
 });
-<<<<<<< HEAD
+router.post('/insert_new_receipt/:STAFFID/:CUSTOMER_ID/:TBID/:TYPE', (req, res, next) =>{
+  receipt.insertNewReceipt(req.params.STAFFID, req.params.CUSTOMER_ID, req.params.TBID, req.params.TYPE, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
+    if(err){
+      res.json(err); // tra ve loi 
+    }
+    else{
+      res.json(req.params.body); // neu them thanh cong thi tra ve ket qua la phan body cua request 
+    }
+  })
+})
+
 
 // Customer
 router.get('/get_all_customer', (req, res, next) =>{
@@ -214,17 +224,14 @@ router.get('/get_customer_by_id/:customer_ID', (req, res, next) =>{
     }
   });
 });
-router.post('/insert_new_customer', (req, res, next) =>{
-  Customer.addANewCustomer(req.params.body, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
-=======
-router.post('/insert_new_receipt/:STAFFID/:CUSTOMER_ID/:TBID/:TYPE', (req, res, next) =>{
-  receipt.insertNewReceipt(req.params.STAFFID, req.params.CUSTOMER_ID, req.params.TBID, req.params.TYPE, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
->>>>>>> 40f2decadcc8fddeddc1a474c9141ddb97577923
+
+router.post('/insert_new_customer/:CUSTOMER_ID/:CUSTOMER_NAME/:PHONE', (req, res, next) =>{
+  Customer.addANewCustomer(req.params.CUSTOMER_ID, req.params.CUSTOMER_NAME, req.params.PHONE, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
     if(err){
-      res.json(err); // tra ve loi 
+      res.send(err); // tra ve loi 
     }
     else{
-      res.json(req.params.body); // neu them thanh cong thi tra ve ket qua la phan body cua request 
+      res.send(req.params.body); // neu them thanh cong thi tra ve ket qua la phan body cua request 
     }
   })
 })
