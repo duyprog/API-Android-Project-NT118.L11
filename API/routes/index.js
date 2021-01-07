@@ -6,6 +6,7 @@ var receipt = require('../models/Receipt');
 var items = require('../models/Item');
 var receiptDetails = require('../models/ReceiptDetail');
 var Customer = require('../models/Customer');
+const customer = require('../models/Customer');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -221,6 +222,16 @@ router.post('/insert_new_receipt/:STAFFID/:CUSTOMER_ID/:TBID/:TYPE', (req, res, 
     }
   })
 })
+router.post('/insert_takeaway_receipt/:STAFFID', (req, res, next) =>{
+  receipt.insertTakeAwayReceipt(req.params.STAFFID, (err) =>{ // req.body là các tham số truyền vào để insert nằm trong phần body ví dụ như là : req.body.STAFFID, ..... 
+    if(err){
+      res.json(err); // tra ve loi 
+    }
+    else{
+      res.json(req.params); // neu them thanh cong thi tra ve ket qua la phan body cua request 
+    }
+  })
+})
 
 router.put('/update_receipt_total_price', (req, res, next) =>{
   console.log();
@@ -329,6 +340,26 @@ router.get('/get_totalprice_by_id/:RECEIPT_ID', (req, res, next) =>{
 router.get('/get_tableid_by_receiptid/:RECEIPT_ID', (req, res, next) =>{
   receipt.getTableIdbyReceiptId(req.params.RECEIPT_ID, (rows, err) =>{
     if(err){
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
+router.get('/get_id_current_customer', (req, res, next) =>{
+  customer.getCurrentCustomerId((err, rows) =>{
+    if(err) {
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
+router.get('/get_takeaway', (req, res, next) =>{
+  receipt.getReceiptTakeAway((err, rows) =>{
+    if(err) {
       res.send(err);
     }
     else{

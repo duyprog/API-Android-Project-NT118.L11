@@ -19,6 +19,9 @@ var receipt = {
     insertNewReceipt: (STAFFID, CUSTOMER_ID, TBID, TYPE, callback) => {
         return db.query("INSERT INTO RECEIPT(STAFFID, CUSTOMER_ID, TBID, TYPE) VALUES (?,?,?,1)", [STAFFID, CUSTOMER_ID, TBID, TYPE], callback);
     }, 
+    insertTakeAwayReceipt: (STAFFID, callback) => {
+        return db.query("INSERT INTO RECEIPT(STAFFID, takeaway) VALUES (?,1)", [STAFFID], callback);
+    }, 
     getIdOfCurrentReceipt: (callback) =>{
         return db.query('SELECT RECEIPT_ID FROM RECEIPT ORDER BY RECEIPT_ID DESC LIMIT 1', callback);
     },
@@ -34,6 +37,9 @@ var receipt = {
     }, 
     getTableIdbyReceiptId: (RECEIPT_ID, callback) => {
         return db.query(`SELECT TBID FROM RECEIPT WHERE RECEIPT_ID = ?`, [RECEIPT_ID], callback);
+    }, 
+    getReceiptTakeAway: (callback) => {
+        return db.query(`SELECT * FROM RECEIPT WHERE takeaway = 1`, callback);
     }
 }
 

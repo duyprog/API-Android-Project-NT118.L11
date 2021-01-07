@@ -17,6 +17,9 @@ var customer={
     },
     deleteACustomer: (CUSTOMER_ID, callback) =>{
         return db.query("DELETE FROM CUSTOMER WHERE CUSTOMER_ID=?", [CUSTOMER_ID], callback);
+    }, 
+    getCurrentCustomerId:(callback) =>{
+        return db.query("SELECT CUSTOMER_ID FROM CUSTOMER ORDER BY CUSTOMER_ID DESC LIMIT 1", callback)
     }
 }
 module.exports = customer;
