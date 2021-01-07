@@ -326,5 +326,14 @@ router.get('/get_totalprice_by_id/:RECEIPT_ID', (req, res, next) =>{
     }
   });
 });
-
+router.get('/get_tableid_by_receiptid/:RECEIPT_ID', (req, res, next) =>{
+  receipt.getTableIdbyReceiptId(req.params.RECEIPT_ID, (rows, err) =>{
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.send(rows);
+    }
+  });
+});
 module.exports = router;
